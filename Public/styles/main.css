@@ -1,0 +1,93 @@
+body {
+  height: 100%;
+  font-family: Helvetica, sans-serif;
+  padding: 0;
+  margin: 0; }
+  body .teamGreen {
+    background-color: #2EC4B6; }
+    body .teamGreen .btn-wrapper .team-score-holder .team-score-title {
+      color: #39746e; }
+    body .teamGreen .btn-wrapper .clicker-btn {
+      background: #74d7cd;
+      box-shadow: 0 8px #39746e; }
+      body .teamGreen .btn-wrapper .clicker-btn:hover {
+        box-shadow: 0 6px #39746e;
+        top: calc(-50% + 2px); }
+      body .teamGreen .btn-wrapper .clicker-btn:active {
+        box-shadow: 0 0 #39746e;
+        top: calc(-50% + 6px); }
+  body .teamBlue {
+    background-color: #20A4F3; }
+    body .teamBlue .btn-wrapper .team-score-holder .team-score-title {
+      color: #15699b; }
+    body .teamBlue .btn-wrapper .clicker-btn {
+      background: #48b4f5;
+      box-shadow: 0 8px #15699b; }
+      body .teamBlue .btn-wrapper .clicker-btn:hover {
+        box-shadow: 0 6px #15699b;
+        top: calc(-50% + 2px); }
+      body .teamBlue .btn-wrapper .clicker-btn:active {
+        box-shadow: 0 0 #15699b;
+        top: calc(-50% + 6px); }
+  body .teamPurple {
+    background-color: #973FDB; }
+    body .teamPurple .btn-wrapper .team-score-holder .team-score-title {
+      color: #6e2ea0; }
+    body .teamPurple .btn-wrapper .clicker-btn {
+      background: #bc84e8;
+      box-shadow: 0 8px #6e2ea0; }
+      body .teamPurple .btn-wrapper .clicker-btn:hover {
+        box-shadow: 0 6px #6e2ea0;
+        top: calc(-50% + 2px); }
+      body .teamPurple .btn-wrapper .clicker-btn:active {
+        box-shadow: 0 0 #6e2ea0;
+        top: calc(-50% + 6px); }
+  body #app .btn-wrapper {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    body #app .btn-wrapper .team-score-holder {
+      text-align: center;
+      -webkit-box-flex: 1;
+      -webkit-box: 1;
+      -ms-flex: 1;
+      flex: 1; }
+      body #app .btn-wrapper .team-score-holder .team-score-title {
+        font-size: 12px;
+        margin-top: 10px; }
+      body #app .btn-wrapper .team-score-holder .team-score-value h1 {
+        font-size: 32px;
+        color: #ffffff;
+        margin: 0;
+        padding: 0; }
+    body #app .btn-wrapper .clicker-btn {
+      color: #ffffff;
+      font-family: Helvetica, sans-serif;
+      font-size: 20px;
+      text-align: center;
+      display: block;
+      position: relative;
+      top: -50%;
+      margin: 15px 30px;
+      height: 50px;
+      width: 120px;
+      outline: none;
+      -webkit-transition: none;
+      -moz-transition: none;
+      transition: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer; }
+      body #app .btn-wrapper .clicker-btn:hover {
+        top: calc(-50% + 2px); }
+      body #app .btn-wrapper .clicker-btn:active {
+        top: calc(-50% + 6px); }
+
+/*# sourceMappingURL=main.css.map */

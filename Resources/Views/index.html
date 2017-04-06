@@ -1,0 +1,25 @@
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Click war</title>
+	<link rel="stylesheet" href="/Styles/main.css">
+
+</head>
+<body >
+	<div id="app" v-bind:class="team">
+		<div class="btn-wrapper">
+			<div class="team-score-holder">
+				<div class="team-score-title">TEAM SCORE</div>
+				<div class="team-score-value">
+					<h1 v-if="teamID === 1">{{ team1Score }}</h1>
+					<h1 v-else-if="teamID === 2">{{ team2Score }}</h1>
+					<h1 v-else>{{ team3Score }}</h1>
+				</div>
+			</div>
+			<button v-on:click="increment" class="btn clicker-btn">{{counter}}</button>
+		</div>
+	</div>
+</body>
+<script src="/scripts/Vue.js"></script>
+<script src="/scripts/main.js"></script>
+</html>
