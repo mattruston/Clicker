@@ -2,28 +2,38 @@ var vm = new Vue({
 	el: '#app',
 	data: {
 		counter: 0,
+		tempCounter: 0,
 		team1Score: 0,
 		team2Score: 0,
 		team3Score: 0,
 		teamID: 0,
 		team: 'none',
 		teamNotChosen: true,
-		teamHover: 'none-hover'
+		teamHover: 'none-hover',
+		timeout: false
 	},
-	created() {
-		console.log('created')
-		Vue.$http.get('teams').then(response => {
-		    var data = response.body
-			console.log('mounted')
-		  }, response => {
-		    // error callback
-		  })
-		  console.log('done')
+	mounted() {
+		this.loadScores()
 	},
 	methods: {
 		loadScores: function() {
 			this.$http.get('/teams').then(response => {
 			    var data = response.body
+				console.log(data)
+				for (i = 0; i < 3; i++) {
+					switch(data[i].id) {
+						case 1:
+							this.team1Score = data[i].score
+							break
+						case 2:
+							this.team2Score = data[i].score
+							break
+						case 3:
+							this.team3Score = data[i].score
+							break
+						default:
+					}
+				}
 			}, response => {
 			    // error callback
 			});
@@ -31,20 +41,23 @@ var vm = new Vue({
 		increment: function(event) {
 			console.log('hello')
 			this.counter += 1
-
-			switch(this.teamID) {
-				case 1:
-					this.team1Score += 1
-					break
-				case 2:
-					this.team2Score += 1
-					break
-				case 3:
-					this.team3Score += 1
-					break
-				default:
-
+			this.tempCounter += 1
+			if (!this.timeout) {
+				setTimeout(this.sendUpdate(this.teamID), 150000)
+				this.timeout = true
 			}
+
+		},
+		sendUpdate: function(teamID) {
+			console.log("sending data")
+			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
+				this.timeout = false
+				this.loadScores()
+				this.tempCounter = 0
+			}, response => {
+			    // error callback
+			});
+
 		},
 		pickTeam: function(team) {
 			if (team === 1) {
