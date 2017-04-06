@@ -19,7 +19,7 @@ var vm = new Vue({
 		loadScores: function() {
 			this.$http.get('/teams').then(response => {
 			    var data = response.body
-				console.log(data)
+
 				for (i = 0; i < 3; i++) {
 					switch(data[i].id) {
 						case 1:
@@ -42,7 +42,6 @@ var vm = new Vue({
 
 			this.counter += 1
 			this.tempCounter += 1
-			console.log(this.tempCounter)
 			//locally update until callback
 			switch(this.teamID) {
 				case 1:
@@ -63,7 +62,6 @@ var vm = new Vue({
 
 		},
 		sendUpdate: function() {
-			console.log("sending data")
 			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
 				this.timeout = false
 				this.loadScores()
