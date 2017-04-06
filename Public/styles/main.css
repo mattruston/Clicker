@@ -37,6 +37,10 @@ body {
       body .teamGreen .back-btn:active {
         box-shadow: 0 0 #39746e;
         top: 6px; }
+    body .teamGreen .btn-wrapper .team-score-holder .team2 {
+      background: #20A4F3; }
+    body .teamGreen .btn-wrapper .team-score-holder .team3 {
+      background: #973FDB; }
     body .teamGreen .btn-wrapper .team-score-holder .team-score-title {
       color: #39746e; }
   body .teamBlue {
@@ -58,6 +62,10 @@ body {
       body .teamBlue .back-btn:active {
         box-shadow: 0 0 #15699b;
         top: 6px; }
+    body .teamBlue .btn-wrapper .team-score-holder .team1 {
+      background: #2EC4B6; }
+    body .teamBlue .btn-wrapper .team-score-holder .team3 {
+      background: #973FDB; }
     body .teamBlue .btn-wrapper .team-score-holder .team-score-title {
       color: #15699b; }
   body .teamPurple {
@@ -79,6 +87,10 @@ body {
       body .teamPurple .back-btn:active {
         box-shadow: 0 0 #6e2ea0;
         top: 6px; }
+    body .teamPurple .btn-wrapper .team-score-holder .team1 {
+      background: #2EC4B6; }
+    body .teamPurple .btn-wrapper .team-score-holder .team2 {
+      background: #20A4F3; }
     body .teamPurple .btn-wrapper .team-score-holder .team-score-title {
       color: #6e2ea0; }
   body .none {
@@ -173,11 +185,22 @@ body {
       body #app .btn-wrapper .team-score-holder .team-score-title {
         font-size: 12px;
         margin-top: 10px; }
+      body #app .btn-wrapper .team-score-holder .enemy {
+        padding: 5px;
+        display: inline-block;
+        color: #ffffff;
+        min-width: 75px; }
+      body #app .btn-wrapper .team-score-holder .enemy1 {
+        border-radius: 5px 0 0 5px; }
+      body #app .btn-wrapper .team-score-holder .enemy2 {
+        border-radius: 0 5px 5px 0; }
       body #app .btn-wrapper .team-score-holder .team-score-value h1 {
         font-size: 32px;
         color: #ffffff;
         margin: 0;
-        padding: 0; }
+        padding: 0;
+        display: inline-block;
+        min-width: 100px; }
     body #app .btn-wrapper .clicker-btn {
       font-size: 20px;
       text-align: center;

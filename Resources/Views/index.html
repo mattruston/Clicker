@@ -20,9 +20,21 @@
 			<div class="team-score-holder">
 				<div v-if="teamID != 0" class="team-score-title">TEAM SCORE</div>
 				<div class="team-score-value">
-					<h1 v-if="teamID === 1">{{ team1Score }}</h1>
-					<h1 v-else-if="teamID === 2">{{ team2Score }}</h1>
-					<h1 v-else-if="teamID === 3">{{ team3Score }}</h1>
+					<div v-if="teamID === 1">
+						<div class="enemy enemy1 team2">{{ team2Score }}</div>
+						<h1>{{ team1Score }}</h1>
+						<div class="enemy enemy2 team3">{{ team3Score }}</div>
+					</div>
+					<div v-else-if="teamID === 2">
+						<div class="enemy enemy1 team1">{{ team1Score }}</div>
+						<h1>{{ team2Score }}</h1>
+						<div class="enemy enemy2 team3">{{ team3Score }}</div>
+					</div>
+					<div v-else-if="teamID === 3">
+						<div class="enemy enemy1 team1">{{ team1Score }}</div>
+						<h1>{{ team3Score }}</h1>
+						<div class="enemy enemy2 team2">{{ team2Score }}</div>
+					</div>
 				</div>
 			</div>
 			<button v-on:click="increment" class="btn clicker-btn">{{counter}}</button>

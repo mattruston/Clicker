@@ -82,6 +82,13 @@ body {
 
 		.btn-wrapper {
 			.team-score-holder {
+
+				.team2 {
+					background: $color2-background;
+				}
+				.team3 {
+					background: $color3-background;
+				}
 				.team-score-title {
 					color: $color1-shadow;
 				}
@@ -123,6 +130,12 @@ body {
 
 		.btn-wrapper {
 			.team-score-holder {
+				.team1 {
+					background: $color1-background;
+				}
+				.team3 {
+					background: $color3-background;
+				}
 				.team-score-title {
 					color: $color2-shadow;
 				}
@@ -163,6 +176,12 @@ body {
 
 		.btn-wrapper {
 			.team-score-holder {
+				.team1 {
+					background: $color1-background;
+				}
+				.team2 {
+					background: $color2-background;
+				}
 				.team-score-title {
 					color: $color3-shadow;
 				}
@@ -315,12 +334,29 @@ body {
 					//color: $color1-shadow;
 				}
 
+				.enemy {
+					padding: 5px;
+					display: inline-block;
+					color: $white;
+					min-width: 75px;
+				}
+
+				.enemy1 {
+					border-radius: $border-radius 0 0 $border-radius;
+				}
+
+				.enemy2 {
+					border-radius: 0 $border-radius $border-radius 0;
+				}
+
 				.team-score-value {
 					h1 {
 						font-size: 32px;
 						color: $white;
 						margin: 0;
 						padding: 0;
+						display: inline-block;
+						min-width: 100px;
 					}
 
 				}
