@@ -57,7 +57,6 @@ var vm = new Vue({
 				default:
 			}
 			if (this.tempCounter >= 100) {
-				alert('broke 100')
 				this.sendUpdate()
 				this.timeout = true
 			}
