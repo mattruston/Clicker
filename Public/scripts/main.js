@@ -42,7 +42,20 @@ var vm = new Vue({
 			console.log('hello')
 			this.counter += 1
 			this.tempCounter += 1
-			if (!this.timeout) {
+			//locally update until callback
+			switch(this.teamID) {
+				case 1:
+					this.team1Score += 1
+					break
+				case 2:
+					this.team2Score += 1
+					break
+				case 3:
+					this.team3Score += 1
+					break
+				default:
+			}
+			if (this.tempCounter >= 100) {
 				setTimeout(this.sendUpdate(this.teamID), 150000)
 				this.timeout = true
 			}
