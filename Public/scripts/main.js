@@ -39,9 +39,10 @@ var vm = new Vue({
 			});
 		},
 		increment: function(event) {
-			console.log('hello')
+
 			this.counter += 1
 			this.tempCounter += 1
+			console.log(this.tempCounter)
 			//locally update until callback
 			switch(this.teamID) {
 				case 1:
@@ -56,12 +57,13 @@ var vm = new Vue({
 				default:
 			}
 			if (this.tempCounter >= 100) {
-				setTimeout(this.sendUpdate(this.teamID), 150000)
+				alert('broke 100')
+				this.sendUpdate()
 				this.timeout = true
 			}
 
 		},
-		sendUpdate: function(teamID) {
+		sendUpdate: function() {
 			console.log("sending data")
 			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
 				this.timeout = false
@@ -93,6 +95,13 @@ var vm = new Vue({
 			} else if (team === 3) {
 				this.teamHover = 'team-purple-hover'
 			}
+		},
+		cleanUp: function() {
+			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter)
 		}
 	}
 })
+
+window.onbeforeunload = function(){
+	vm.cleanUp()
+}
