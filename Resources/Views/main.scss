@@ -16,7 +16,7 @@ $color3-button: #bc84e8;
 $color3-background: #973FDB;
 $color3-shadow: #6e2ea0;
 
-$colornone-background: #aaaaaa;
+$colornone-background: #ccc;
 
 $border-radius: 5px;
 $button-height: 50px;
@@ -28,28 +28,62 @@ body {
 	padding: 0;
 	margin: 0;
 
+	.btn {
+		color: $white;
+		font-family: $main-font;
+		outline: none;
+		position: relative;
+
+		-webkit-transition: none;
+		-moz-transition: none;
+		transition: none;
+
+		border: none;
+		border-radius: $border-radius;
+		cursor: pointer;
+	}
+
+	.back-btn {
+		position: absolute;
+		padding: 5px 8px;
+		margin: 10px;
+	}
+
 	.teamGreen {
 		background-color: $color1-background;
+		.btn {
+			background: $color1-button;
+			box-shadow: 0 8px $color1-shadow;
+
+			&:hover {
+				box-shadow: 0 6px $color1-shadow;
+				top: calc(-50% + 2px);
+			}
+
+			&:active {
+				box-shadow: 0 0 $color1-shadow;
+				top: calc(-50% + 6px);
+			}
+		}
+
+		.back-btn {
+			box-shadow: 0 6px $color1-shadow;
+
+			&:hover {
+				box-shadow: 0 5px $color1-shadow;
+				top: 1px;
+			}
+
+			&:active {
+				box-shadow: 0 0 $color1-shadow;
+				top: 6px;
+			}
+		}
 
 		.btn-wrapper {
 			.team-score-holder {
 				.team-score-title {
 					color: $color1-shadow;
-				}
-			}
-
-			.clicker-btn {
-				background: $color1-button;
-				box-shadow: 0 8px $color1-shadow;
-
-				&:hover {
-					box-shadow: 0 6px $color1-shadow;
-					top: calc(-50% + 2px);
-				}
-
-				&:active {
-					box-shadow: 0 0 $color1-shadow;
-					top: calc(-50% + 6px);
 				}
 			}
 		}
@@ -58,25 +92,39 @@ body {
 	.teamBlue {
 		background-color: $color2-background;
 
+		.btn {
+			background: $color2-button;
+			box-shadow: 0 8px $color2-shadow;
+
+			&:hover {
+				box-shadow: 0 6px $color2-shadow;
+				top: calc(-50% + 2px);
+			}
+
+			&:active {
+				box-shadow: 0 0 $color2-shadow;
+				top: calc(-50% + 6px);
+			}
+		}
+
+		.back-btn {
+			box-shadow: 0 6px $color2-shadow;
+
+			&:hover {
+				box-shadow: 0 5px $color2-shadow;
+				top: 1px;
+			}
+
+			&:active {
+				box-shadow: 0 0 $color2-shadow;
+				top: 6px;
+			}
+		}
+
 		.btn-wrapper {
 			.team-score-holder {
 				.team-score-title {
 					color: $color2-shadow;
-				}
-			}
-
-			.clicker-btn {
-				background: $color2-button;
-				box-shadow: 0 8px $color2-shadow;
-
-				&:hover {
-					box-shadow: 0 6px $color2-shadow;
-					top: calc(-50% + 2px);
-				}
-
-				&:active {
-					box-shadow: 0 0 $color2-shadow;
-					top: calc(-50% + 6px);
 				}
 			}
 		}
@@ -84,25 +132,39 @@ body {
 
 	.teamPurple {
 		background-color: $color3-background;
+		.btn {
+			background: $color3-button;
+			box-shadow: 0 8px $color3-shadow;
+
+			&:hover {
+				box-shadow: 0 6px $color3-shadow;
+				top: calc(-50% + 2px);
+			}
+
+			&:active {
+				box-shadow: 0 0 $color3-shadow;
+				top: calc(-50% + 6px);
+			}
+		}
+
+		.back-btn {
+			box-shadow: 0 6px $color3-shadow;
+
+			&:hover {
+				box-shadow: 0 5px $color3-shadow;
+				top: 1px;
+			}
+
+			&:active {
+				box-shadow: 0 0 $color3-shadow;
+				top: 6px;
+			}
+		}
 
 		.btn-wrapper {
 			.team-score-holder {
 				.team-score-title {
 					color: $color3-shadow;
-				}
-			}
-			.clicker-btn {
-				background: $color3-button;
-				box-shadow: 0 8px $color3-shadow;
-
-				&:hover {
-					box-shadow: 0 6px $color3-shadow;
-					top: calc(-50% + 2px);
-				}
-
-				&:active {
-					box-shadow: 0 0 $color3-shadow;
-					top: calc(-50% + 6px);
 				}
 			}
 		}
@@ -158,8 +220,6 @@ body {
 				}
 
 				.select-btn {
-					color: $white;
-					font-family: $main-font;
 					font-size: 12px;
 					text-align: center;
 
@@ -169,17 +229,6 @@ body {
 					margin: 8px 15px 15px 15px;
 					height: 30px;
 					width: 60px;
-
-					outline: none;
-
-					-webkit-transition: none;
-					-moz-transition: none;
-					transition: none;
-
-					border: none;
-					border-radius: $border-radius;
-
-					cursor: pointer;
 
 					&:hover {
 						//box-shadow: 0 6px $color1-shadow;
@@ -278,33 +327,13 @@ body {
 			}
 
 			.clicker-btn {
-				//background: $color1-button;
-				//box-shadow: 0 8px $color1-shadow;
-				color: $white;
-
-
-				font-family: $main-font;
 				font-size: 20px;
 				text-align: center;
-
-				display: block;
-				position: relative;
 
 				top: -50%;
 				margin: 15px 30px;
 				height: $button-height;
 				width: 120px;
-
-				outline: none;
-
-				-webkit-transition: none;
-				-moz-transition: none;
-				transition: none;
-
-				border: none;
-				border-radius: $border-radius;
-
-				cursor: pointer;
 
 				&:hover {
 					//box-shadow: 0 6px $color1-shadow;

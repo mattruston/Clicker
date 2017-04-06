@@ -71,7 +71,6 @@ var vm = new Vue({
 			}, response => {
 			    // error callback
 			});
-
 		},
 		pickTeam: function(team) {
 			if (team === 1) {
@@ -94,6 +93,18 @@ var vm = new Vue({
 			} else if (team === 3) {
 				this.teamHover = 'team-purple-hover'
 			}
+		},
+		backToSelect: function() {
+			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
+				this.loadScores()
+				this.tempCounter = 0
+				this.counter = 0
+				this.teamNotChosen = true
+				this.team = 'none'
+				this.teamID = 0
+			}, response => {
+			    // error callback
+			});
 		},
 		cleanUp: function() {
 			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter)

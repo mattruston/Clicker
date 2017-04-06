@@ -7,12 +7,13 @@
 </head>
 <body >
 	<div id="app" v-bind:class="team">
+		<button v-if="!teamNotChosen" v-on:click="backToSelect" class="btn back-btn">x</button>
 		<div v-if="teamNotChosen"class="team-pick-wrapper">
 			<div class="select-modal">
 				<div><h1 v-bind:class="teamHover">Choose your team</h1></div>
-				<button class="select-btn team1" v-on:click="pickTeam(1)" v-on:mouseover="colorChange(1)">Green</button>
-				<button class="select-btn team2" v-on:click="pickTeam(2)" v-on:mouseover="colorChange(2)">Blue</button>
-				<button class="select-btn team3" v-on:click="pickTeam(3)" v-on:mouseover="colorChange(3)">Purple</button>
+				<button class="btn select-btn team1" v-on:click="pickTeam(1)" v-on:mouseover="colorChange(1)">Green</button>
+				<button class="btn select-btn team2" v-on:click="pickTeam(2)" v-on:mouseover="colorChange(2)">Blue</button>
+				<button class="btn select-btn team3" v-on:click="pickTeam(3)" v-on:mouseover="colorChange(3)">Purple</button>
 			</div>
 		</div>
 		<div class="btn-wrapper">
