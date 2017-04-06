@@ -2,7 +2,7 @@
 <head>
 	<meta charset="UTF-8"/>
 	<title>Click war</title>
-	<link rel="stylesheet" href="/Styles/main.css">
+	<link rel="stylesheet" href="../../Public/styles/main.css">
 
 </head>
 <body >
@@ -18,8 +18,13 @@
 			</div>
 			<button v-on:click="increment" class="btn clicker-btn">{{counter}}</button>
 		</div>
+		<div class="team-pick-wrapper">
+			<button class="select-btn team1" v-on:click="pickTeam(1)">Green</button>
+			<button class="select-btn team2" v-on:click="pickTeam(2)">Blue</button>
+			<button class="select-btn team3" v-on:click="pickTeam(3)">Purple</button>
+		</div>
 	</div>
 </body>
-<script src="/scripts/Vue.js"></script>
-<script src="/scripts/main.js"></script>
+<script src="../../Public/scripts/Vue.js"></script>
+<script src="../../Public/scripts/main.js"></script>
 </html>

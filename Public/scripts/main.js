@@ -12,20 +12,32 @@ var vm = new Vue({
 		increment: function(event) {
 			console.log('hello')
 			this.counter += 1
-			this.team1Score += 1
 
-			if(this.team == 'teamPurple') {
+			switch(this.teamID) {
+				case 1:
+					this.team1Score += 1
+					break
+				case 2:
+					this.team2Score += 1
+					break
+				case 3:
+					this.team3Score += 1
+					break
+				default:
+
+			}
+
+		},
+		pickTeam: function(team) {
+			if (team === 1) {
 				this.team = 'teamGreen'
 				this.teamID = 1
-				this.team3Score += 1
-			} else if(this.team == 'teamGreen') {
+			} else if (team === 2) {
 				this.team = 'teamBlue'
 				this.teamID = 2
-				this.team1Score += 1
 			} else {
 				this.team = 'teamPurple'
 				this.teamID = 3
-				this.team2Score += 1
 			}
 		}
 	}

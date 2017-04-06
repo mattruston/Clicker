@@ -42,6 +42,58 @@ body {
       body .teamPurple .btn-wrapper .clicker-btn:active {
         box-shadow: 0 0 #6e2ea0;
         top: calc(-50% + 6px); }
+  body #app .team-pick-wrapper {
+    text-align: center;
+    position: absolute;
+    top: 1%; }
+    body #app .team-pick-wrapper .select-btn {
+      color: #ffffff;
+      font-family: Helvetica, sans-serif;
+      font-size: 12px;
+      text-align: center;
+      display: block;
+      position: relative;
+      margin: 15px 15px;
+      height: 30px;
+      width: 60px;
+      outline: none;
+      -webkit-transition: none;
+      -moz-transition: none;
+      transition: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer; }
+      body #app .team-pick-wrapper .select-btn:hover {
+        top: calc(-50% + 2px); }
+      body #app .team-pick-wrapper .select-btn:active {
+        top: calc(-50% + 6px); }
+    body #app .team-pick-wrapper .team1 {
+      background: #74d7cd;
+      box-shadow: 0 8px #39746e; }
+      body #app .team-pick-wrapper .team1:hover {
+        box-shadow: 0 6px #39746e;
+        top: 2px; }
+      body #app .team-pick-wrapper .team1:active {
+        box-shadow: 0 0 #39746e;
+        top: 6px; }
+    body #app .team-pick-wrapper .team2 {
+      background: #48b4f5;
+      box-shadow: 0 8px #15699b; }
+      body #app .team-pick-wrapper .team2:hover {
+        box-shadow: 0 6px #15699b;
+        top: 2px; }
+      body #app .team-pick-wrapper .team2:active {
+        box-shadow: 0 0 #15699b;
+        top: 6px; }
+    body #app .team-pick-wrapper .team3 {
+      background: #bc84e8;
+      box-shadow: 0 8px #6e2ea0; }
+      body #app .team-pick-wrapper .team3:hover {
+        box-shadow: 0 6px #6e2ea0;
+        top: 2px; }
+      body #app .team-pick-wrapper .team3:active {
+        box-shadow: 0 0 #6e2ea0;
+        top: 6px; }
   body #app .btn-wrapper {
     height: 100%;
     display: -webkit-box;
