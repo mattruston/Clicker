@@ -45,7 +45,8 @@ body {
   body #app .team-pick-wrapper {
     text-align: center;
     position: absolute;
-    top: 1%; }
+    top: 50%;
+    left: 50%; }
     body #app .team-pick-wrapper .select-btn {
       color: #ffffff;
       font-family: Helvetica, sans-serif;
