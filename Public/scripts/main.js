@@ -1,3 +1,5 @@
+
+
 var vm = new Vue({
 	el: '#app',
 	data: {
@@ -5,8 +7,10 @@ var vm = new Vue({
 		team1Score: 1234001,
 		team2Score: 10,
 		team3Score: 99,
-		teamID: 3,
-		team: 'teamPurple'
+		teamID: 0,
+		team: 'none',
+		teamNotChosen: true,
+		teamHover: 'none-hover'
 	},
 	methods: {
 		increment: function(event) {
@@ -26,7 +30,6 @@ var vm = new Vue({
 				default:
 
 			}
-
 		},
 		pickTeam: function(team) {
 			if (team === 1) {
@@ -38,6 +41,16 @@ var vm = new Vue({
 			} else {
 				this.team = 'teamPurple'
 				this.teamID = 3
+			}
+			this.teamNotChosen = false;
+		},
+		colorChange: function(team) {
+			if (team === 1) {
+				this.teamHover = 'team-green-hover'
+			} else if (team === 2) {
+				this.teamHover = 'team-blue-hover'
+			} else if (team === 3) {
+				this.teamHover = 'team-purple-hover'
 			}
 		}
 	}
