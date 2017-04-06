@@ -2,29 +2,32 @@
 <head>
 	<meta charset="UTF-8"/>
 	<title>Click war</title>
-	<link rel="stylesheet" href="/styles/main.css">
+	<link rel="stylesheet" href="/Styles/main.css">
 
 </head>
 <body >
 	<div id="app" v-bind:class="team">
+		<div v-if="teamNotChosen"class="team-pick-wrapper">
+			<div class="select-modal">
+				<div><h1 v-bind:class="teamHover">Choose your team</h1></div>
+				<button class="select-btn team1" v-on:click="pickTeam(1)" v-on:mouseover="colorChange(1)">Green</button>
+				<button class="select-btn team2" v-on:click="pickTeam(2)" v-on:mouseover="colorChange(2)">Blue</button>
+				<button class="select-btn team3" v-on:click="pickTeam(3)" v-on:mouseover="colorChange(3)">Purple</button>
+			</div>
+		</div>
 		<div class="btn-wrapper">
 			<div class="team-score-holder">
-				<div class="team-score-title">TEAM SCORE</div>
+				<div v-if="teamID != 0" class="team-score-title">TEAM SCORE</div>
 				<div class="team-score-value">
 					<h1 v-if="teamID === 1">{{ team1Score }}</h1>
 					<h1 v-else-if="teamID === 2">{{ team2Score }}</h1>
-					<h1 v-else>{{ team3Score }}</h1>
+					<h1 v-else-if="teamID === 3">{{ team3Score }}</h1>
 				</div>
 			</div>
 			<button v-on:click="increment" class="btn clicker-btn">{{counter}}</button>
 		</div>
-		<div class="team-pick-wrapper">
-			<button class="select-btn team1" v-on:click="pickTeam(1)">Green</button>
-			<button class="select-btn team2" v-on:click="pickTeam(2)">Blue</button>
-			<button class="select-btn team3" v-on:click="pickTeam(3)">Purple</button>
-		</div>
 	</div>
 </body>
-<script src="/scripts/Vue.js"></script>
-<script src="/scripts/main.js"></script>
+<script src="/Scripts/Vue.js"></script>
+<script src="/Scripts/main.js"></script>
 </html>
