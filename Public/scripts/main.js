@@ -10,16 +10,21 @@ var vm = new Vue({
 		team: 'none',
 		teamNotChosen: true,
 		teamHover: 'none-hover',
-		timeout: false
+		timeout: false,
+		timer: ''
 	},
 	mounted() {
 		this.loadScores()
+		this.timer = setInterval(this.update, 30000)
+	},
+	beforeDestroy() {
+		clearInterval(this.timer)
 	},
 	methods: {
 		loadScores: function() {
 			this.$http.get('/teams').then(response => {
 			    var data = response.body
-				console.log(data)
+
 				for (i = 0; i < 3; i++) {
 					switch(data[i].id) {
 						case 1:
@@ -42,7 +47,6 @@ var vm = new Vue({
 
 			this.counter += 1
 			this.tempCounter += 1
-			console.log(this.tempCounter)
 			//locally update until callback
 			switch(this.teamID) {
 				case 1:
@@ -57,20 +61,22 @@ var vm = new Vue({
 				default:
 			}
 			if (this.tempCounter >= 100) {
-				this.sendUpdate()
+				this.update()
 				this.timeout = true
 			}
-
 		},
-		sendUpdate: function() {
-			console.log("sending data")
-			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
-				this.timeout = false
+		update: function() {
+			if (this.tempCounter > 0) {
+				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
+					this.timeout = false
+					this.loadScores()
+					this.tempCounter = 0
+				}, response => {
+				    // error callback
+				})
+			} else {
 				this.loadScores()
-				this.tempCounter = 0
-			}, response => {
-			    // error callback
-			});
+			}
 		},
 		pickTeam: function(team) {
 			if (team === 1) {
@@ -95,20 +101,25 @@ var vm = new Vue({
 			}
 		},
 		backToSelect: function() {
-			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
-				this.loadScores()
-				this.tempCounter = 0
-				this.counter = 0
-				this.teamNotChosen = true
-				this.team = 'none'
-				this.teamID = 0
-			}, response => {
-			    // error callback
-			});
+			if (this.tempCounter > 0) {
+				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
+					this.loadScores()
+					this.tempCounter = 0
+					this.counter = 0
+					this.teamNotChosen = true
+					this.team = 'none'
+					this.teamID = 0
+				}, response => {
+				    // error callback
+				});
+			}
 		},
 		cleanUp: function() {
-			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter)
-		}
+			if (this.tempCounter > 0) {
+				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter)
+			}
+		},
+		cancelAutoUpdate: function() { clearInterval(this.timer) }
 	}
 })
 
