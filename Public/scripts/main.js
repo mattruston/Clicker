@@ -1,6 +1,7 @@
 var vm = new Vue({
 	el: '#app',
 	data: {
+		userId: '',
 		counter: 0,
 		tempCounter: 0,
 		team1Score: 0,
@@ -15,7 +16,12 @@ var vm = new Vue({
 	},
 	mounted() {
 		this.loadScores()
-		this.timer = setInterval(this.update, 30000)
+		this.$http.get('/request_id').then(response => {
+			var data = response.body
+			this.userId = data.id
+		}, response => {
+			// error callback
+		})
 	},
 	beforeDestroy() {
 		clearInterval(this.timer)
@@ -65,19 +71,6 @@ var vm = new Vue({
 				this.timeout = true
 			}
 		},
-		update: function() {
-			if (this.tempCounter > 0) {
-				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
-					this.timeout = false
-					this.loadScores()
-					this.tempCounter = 0
-				}, response => {
-				    // error callback
-				})
-			} else {
-				this.loadScores()
-			}
-		},
 		pickTeam: function(team) {
 			if (team === 1) {
 				this.team = 'teamGreen'
@@ -90,6 +83,19 @@ var vm = new Vue({
 				this.teamID = 3
 			}
 			this.teamNotChosen = false;
+			this.timer = setInterval(this.update, 30000)
+		},
+		update: function() {
+			if (this.tempCounter > 0) {
+				this.$http.put('update_score?id=' + this.userId + '?team=' + this.teamID + '?score=' + this.tempCounter).then(response => {
+					this.loadScores()
+					this.tempCounter = 0
+				}, response => {
+				    // error callback
+				})
+			} else {
+				this.loadScores()
+			}
 		},
 		colorChange: function(team) {
 			if (team === 1) {
@@ -102,7 +108,7 @@ var vm = new Vue({
 		},
 		backToSelect: function() {
 			if (this.tempCounter > 0) {
-				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
+				this.$http.put('update_score?id=' + this.userId + '?team=' + this.teamID + '?score=' + this.tempCounter).then(response => {
 					this.loadScores()
 					this.tempCounter = 0
 					this.counter = 0
@@ -118,10 +124,11 @@ var vm = new Vue({
                  this.team = 'none'
                  this.teamID = 0
             }
+			clearInterval(this.timer)
 		},
 		cleanUp: function() {
 			if (this.tempCounter > 0) {
-				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter)
+				this.$http.put('update_score?id=' + this.userId + '?team=' + this.teamID + '?score=' + this.tempCounter)
 			}
 		},
 		cancelAutoUpdate: function() { clearInterval(this.timer) }
