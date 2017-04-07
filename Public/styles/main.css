@@ -10,6 +10,7 @@ body {
     position: relative;
     -webkit-transition: none;
     -moz-transition: none;
+    -ms-transition: none;
     transition: none;
     border: none;
     border-radius: 5px;
@@ -115,11 +116,19 @@ body {
       padding: 50px;
       padding-top: 30px;
       border-radius: 5px;
-      top: -2%; }
+      position: relative;
+      top: -3%; }
+      @media screen and (max-width: 768px) {
+        body #app .team-pick-wrapper .select-modal {
+          padding: 20px;
+          padding-top: 30px; } }
       body #app .team-pick-wrapper .select-modal h1 {
         margin-bottom: 25px;
         margin-top: 0;
         padding: 0; }
+        @media screen and (max-width: 768px) {
+          body #app .team-pick-wrapper .select-modal h1 {
+            font-size: 1.5em; } }
       body #app .team-pick-wrapper .select-modal .team-green-hover {
         color: #2EC4B6; }
       body #app .team-pick-wrapper .select-modal .team-blue-hover {
@@ -134,6 +143,11 @@ body {
         margin: 8px 15px 15px 15px;
         height: 30px;
         width: 60px; }
+        @media screen and (max-width: 768px) {
+          body #app .team-pick-wrapper .select-modal .select-btn {
+            height: 50px;
+            width: 75px;
+            margin: 8px 10px 10px 10px; } }
         body #app .team-pick-wrapper .select-modal .select-btn:hover {
           top: calc(-50% + 2px); }
         body #app .team-pick-wrapper .select-modal .select-btn:active {
@@ -167,10 +181,10 @@ body {
           top: 6px; }
   body #app .btn-wrapper {
     height: 100%;
+    display: flex;
     display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: flex;
     -webkit-box-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -207,10 +221,21 @@ body {
       top: -50%;
       margin: 15px 30px;
       height: 50px;
-      width: 120px; }
+      min-width: 120px; }
+      @media screen and (max-width: 768px) {
+        body #app .btn-wrapper .clicker-btn {
+          height: 100px;
+          top: -40%;
+          min-width: 150px; } }
       body #app .btn-wrapper .clicker-btn:hover {
         top: calc(-50% + 2px); }
+        @media screen and (max-width: 768px) {
+          body #app .btn-wrapper .clicker-btn:hover {
+            top: calc(-40% + 2px); } }
       body #app .btn-wrapper .clicker-btn:active {
         top: calc(-50% + 6px); }
+        @media screen and (max-width: 768px) {
+          body #app .btn-wrapper .clicker-btn:active {
+            top: calc(-40% + 6px); } }
 
 /*# sourceMappingURL=main.css.map */
