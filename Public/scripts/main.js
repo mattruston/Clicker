@@ -10,10 +10,15 @@ var vm = new Vue({
 		team: 'none',
 		teamNotChosen: true,
 		teamHover: 'none-hover',
-		timeout: false
+		timeout: false,
+		timer: ''
 	},
 	mounted() {
 		this.loadScores()
+		this.timer = setInterval(this.update, 30000)
+	},
+	beforeDestroy() {
+		clearInterval(this.timer)
 	},
 	methods: {
 		loadScores: function() {
@@ -56,18 +61,22 @@ var vm = new Vue({
 				default:
 			}
 			if (this.tempCounter >= 100) {
-				this.sendUpdate()
+				this.update()
 				this.timeout = true
 			}
 		},
-		sendUpdate: function() {
-			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
-				this.timeout = false
+		update: function() {
+			if (this.tempCounter > 0) {
+				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
+					this.timeout = false
+					this.loadScores()
+					this.tempCounter = 0
+				}, response => {
+				    // error callback
+				})
+			} else {
 				this.loadScores()
-				this.tempCounter = 0
-			}, response => {
-			    // error callback
-			});
+			}
 		},
 		pickTeam: function(team) {
 			if (team === 1) {
@@ -109,7 +118,8 @@ var vm = new Vue({
 			if (this.tempCounter > 0) {
 				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter)
 			}
-		}
+		},
+		cancelAutoUpdate: function() { clearInterval(this.timer) }
 	}
 })
 
