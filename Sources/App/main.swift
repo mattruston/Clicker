@@ -32,43 +32,66 @@ drop.get("score", Int.self) { req, teamID in
     return "Invalid team"
 }
 
+drop.get("request_id") { _ in
+    let uuid = UUID().uuidString
+    visitedIPs[uuid] = (Date(), Date(), 0)
+    return try JSON(node: ["id" : uuid])
+}
+
 
 // MARK: - PUT requests
 
-drop.put("update_score", Int.self, Int.self) { request, teamID, score in
+drop.put("update_score") { request in
+    
+    //TODO: Make a better way of passing in values
+    var values: [String: String] = [:]
+    if let query = request.uri.query?.components(separatedBy: "?") {
+        for item in query {
+            let pair = item.components(separatedBy: "=")
+            if pair.count != 2 {
+                throw Abort.badRequest
+            }
+            
+            values[pair[0]] = pair[1]
+        }
+    }
+    
+    guard let teamString = values["team"], let teamID = Int(teamString),
+          let peer = values["id"], let scoreString = values["score"],
+          let score = Int(scoreString)
+          else {
+        throw Abort.badRequest
+    }
     
     // Validation logic
-    if let peer = request.peerAddress?.address() {
-        let now = Date()
+    let now = Date()
+    if let old = visitedIPs[peer] {
+        let oldVisit = old.0
+        let lastVisit = old.1
+        let visits = old.2
         
-        if let old = visitedIPs[peer] {
-            let oldVisit = old.0
-            let lastVisit = old.1
-            let visits = old.2
-            
-            let timeSinceLastRequest = now.timeIntervalSince(oldVisit)
-            
-            if visits >= 10 {
-                // If they have more than 10 requests, wait 30 minutes before resetting them
-                if timeSinceLastRequest > (60.0 * 30.0) {
-                    visitedIPs[peer] = (now, now, 0)
-                } else {
-                    return "Timed out due to too many requests"
-                }
+        let timeSinceLastRequest = now.timeIntervalSince(oldVisit)
+        
+        if visits >= 20 {
+            // If they have more than 10 requests, wait 30 minutes before resetting them
+            if timeSinceLastRequest > (60.0 * 30.0) {
+                visitedIPs[peer] = (now, now, 0)
             } else {
-                if now.timeIntervalSince(lastVisit) < 3, score >= 99 {
-                    visitedIPs[peer] = (now, now, 10)
-                    return "Timed out due to impossible request"
-                }
-                if timeSinceLastRequest > 60.0 {
-                    visitedIPs[peer] = (now, now, 0)
-                } else {
-                    visitedIPs[peer] = (oldVisit, now, visits + 1)
-                }
+                return "Timed out due to too many requests"
             }
         } else {
-            visitedIPs[peer] = (now, now, 0)
+            if now.timeIntervalSince(lastVisit) < 3, score >= 99 {
+                visitedIPs[peer] = (now, now, 10)
+                return "Timed out due to impossible request"
+            }
+            if timeSinceLastRequest > 60.0 {
+                visitedIPs[peer] = (now, now, 0)
+            } else {
+                visitedIPs[peer] = (oldVisit, now, visits + 1)
+            }
         }
+    } else {
+        return "Unregistered user"
     }
 
     
