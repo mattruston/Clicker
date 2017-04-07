@@ -38,7 +38,8 @@ drop.get("score", Int.self) { req, teamID in
 drop.put("update_score", Int.self, Int.self) { request, teamID, score in
     
     // Validation logic
-    if let peer = request.peerAddress?.stream {
+    if let peer = request.peerAddress?.address() {
+        NSLog(peer)
         let now = Date()
         
         if let old = visitedIPs[peer] {
