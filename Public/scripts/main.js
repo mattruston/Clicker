@@ -59,7 +59,6 @@ var vm = new Vue({
 				this.sendUpdate()
 				this.timeout = true
 			}
-
 		},
 		sendUpdate: function() {
 			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
@@ -93,19 +92,23 @@ var vm = new Vue({
 			}
 		},
 		backToSelect: function() {
-			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
-				this.loadScores()
-				this.tempCounter = 0
-				this.counter = 0
-				this.teamNotChosen = true
-				this.team = 'none'
-				this.teamID = 0
-			}, response => {
-			    // error callback
-			});
+			if (this.tempCounter > 0) {
+				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter).then(response => {
+					this.loadScores()
+					this.tempCounter = 0
+					this.counter = 0
+					this.teamNotChosen = true
+					this.team = 'none'
+					this.teamID = 0
+				}, response => {
+				    // error callback
+				});
+			}
 		},
 		cleanUp: function() {
-			this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter)
+			if (this.tempCounter > 0) {
+				this.$http.put('/update_score/' + this.teamID + '/' + this.tempCounter)
+			}
 		}
 	}
 })
