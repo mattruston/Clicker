@@ -112,7 +112,12 @@ var vm = new Vue({
 				}, response => {
 				    // error callback
 				});
-			}
+            } else {
+                 this.counter = 0
+                 this.teamNotChosen = true
+                 this.team = 'none'
+                 this.teamID = 0
+            }
 		},
 		cleanUp: function() {
 			if (this.tempCounter > 0) {
