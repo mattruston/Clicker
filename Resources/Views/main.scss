@@ -16,7 +16,7 @@ $color3-button: #bc84e8;
 $color3-background: #973FDB;
 $color3-shadow: #6e2ea0;
 
-$colornone-background: #ccc;
+$colornone-background: -webkit-linear-gradient(left top, $color1-background, $color2-background, $color3-background);
 
 $border-radius: 5px;
 $button-height: 50px;
@@ -48,7 +48,13 @@ $mobile-width: 768px;
 			transition: $dur;
 }
 
-
+@mixin three-gradient($color1, $color2, $color3) {
+	background: #ddd;
+	background: linear-gradient(to bottom right, $color1, $color2, $color3);
+	background: -webkit-linear-gradient(left top, $color1, $color2, $color3);
+	background: -o-linear-gradient(bottom right, $color1, $color2, $color3);
+	background: -moz-linear-gradient(bottom right, $color1, $color2, $color3);
+}
 
 body {
 	height: 100%;
@@ -216,7 +222,7 @@ body {
 	}
 
 	.none {
-		background-color: $colornone-background;
+		@include three-gradient($color1-background, $color2-background, $color3-background);
 	}
 
 	#app {
@@ -241,6 +247,7 @@ body {
 				border-radius: $border-radius;
 				position: relative;
 				top: -3%;
+				box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.1);
 
 				@media screen and ($max: $mobile-width) {
 					padding: 20px;
@@ -399,6 +406,7 @@ body {
 					height: $button-height * 2;
 					top: -40%;
 					min-width: 150px;
+					font-size: 28px;
 				}
 
 				&:hover {
