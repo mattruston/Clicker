@@ -72,7 +72,7 @@ drop.put("update_score") { request in
         
         let timeSinceLastRequest = now.timeIntervalSince(oldVisit)
         
-        if visits >= 20 {
+        if visits >= 13 {
             // If they have more than 10 requests, wait 30 minutes before resetting them
             if timeSinceLastRequest > (60.0 * 30.0) {
                 visitedIPs[peer] = (now, now, 0)
@@ -95,7 +95,7 @@ drop.put("update_score") { request in
     }
 
     
-    if score > 300 || score <= 0 { return "invalid score" }
+    if score > 110 || score <= 0 { return "invalid score" }
     
     if var team = try Team.query().filter("teamid", teamID).first() {
         team.score += score
