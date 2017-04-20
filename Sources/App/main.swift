@@ -80,7 +80,7 @@ drop.put("update_score") { request in
                 return "Timed out due to too many requests"
             }
         } else {
-            if now.timeIntervalSince(lastVisit) < 3, score >= 99 {
+            if now.timeIntervalSince(lastVisit) < 4, score >= 99 {
                 visitedIPs[peer] = (now, now, 10)
                 return "Timed out due to impossible request"
             }
